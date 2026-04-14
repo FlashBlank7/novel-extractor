@@ -1,3 +1,41 @@
+SillyTavern Special/SillyTavern输出专用
+# TRPG Log to Novel Converter
+
+Convert AI TRPG chat logs (`.jsonl` format) into:
+
+- **Clean Novel Edition**: Keeps only the narrative content by removing options, system thoughts, tags, etc. Perfect for reading or publishing.
+- **Raw Full Record**: Preserves all AI outputs in full (including `<TEXT>`, `<thinking>`, etc.). Ideal for archiving or debugging.
+
+## Key Features
+
+- **Smart Extraction**: Specifically extracts the last complete `<TEXT>...</TEXT>` block, avoiding interference from thinking processes.
+- **System Cleanup**: Automatically removes leading system instructions like `[Observe <optimize_input>...]`.
+- **Option Removal**: Automatically filters out player choice blocks (`<Options>...</Options>`).
+- **Parallel Event Formatting**: Converts parallel event separators into standard `---` dividers.
+- **Character Card Highlighting**: Automatically wraps character cards in YAML code blocks for better readability.
+- **CLI Support**: Flexible command-line arguments for specifying input and output files.
+
+## Prerequisites
+
+- **Python 3.7+**
+- **No extra dependencies** (built entirely with the Python Standard Library).
+
+## Usage
+
+```bash
+# Basic usage (uses default output filenames)
+python convert_trpg_log.py "Speculative_Art.jsonl"
+
+# Custom output filenames
+python convert_trpg_log.py "Adventure_Log.jsonl" -s "Vol1_Royal_City.md" -r "Full_Raw_Log.md"
+
+# Include system example messages (usually not required)
+python convert_trpg_log.py chat.jsonl --no-skip-examples
+
+# View help and all options
+python convert_trpg_log.py -h
+```
+
 # TRPG 日志转小说工具
 
 将 AI TRPG 聊天记录（`.jsonl` 格式）转换为：
